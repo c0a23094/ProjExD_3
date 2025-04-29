@@ -141,12 +141,36 @@ class Bomb:
         screen.blit(self.img, self.rct)
 
 
+
+class score:
+    def __init__(self,score):
+        score_display = score
+        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 60)
+        self.img = self.fonto.render("TEST" , 0,(0, 0, 255))
+        print("scpreinit")
+
+    def update(self, screen: pg.Surface):
+        screen.blit(self.img, self.fonto)
+        pg.Surface((100, 50))
+        print("scpreupdate")
+
+    
+
+# class explosion:
+#     def 
+
+
+
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))    
     bg_img = pg.image.load("fig/pg_bg.jpg")
     bird = Bird((300, 200))
     beam = None
+    pscore = 0
+    multibeamlist = []
+    multip = 0
+    # score_display = score(screen)
     # bomb = Bomb((255, 0, 0), 10)
     bombs = [Bomb((255, 0, 0), 10) for _ in range(NUM_OF_BOMBS)]
     clock = pg.time.Clock()
@@ -157,8 +181,14 @@ def main():
                 return
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 # スペースキー押下でBeamクラスのインスタンス生成
-                beam = Beam(bird)          
+                multibeamlist += [multip]
+                multip += 1
+                multibeamlist.append(multip)
+                print(multip)
+                beam = Beam(bird)   
         screen.blit(bg_img, [0, 0])
+        # score_display.update()
+        # Beam
         
         for bomb in bombs:
             if bird.rct.colliderect(bomb.rct):
@@ -174,7 +204,10 @@ def main():
                 if beam.rct.colliderect(bomb.rct):
                     beam = None
                     bombs[j] = None
+                    # score_display.score += 1
+
                     bird.change_img(6, screen)
+                    print(pscore)
             bombs = [bomb for bomb in bombs if bomb is not None]
 
         key_lst = pg.key.get_pressed()
@@ -193,3 +226,6 @@ if __name__ == "__main__":
     main()
     pg.quit()
     sys.exit()
+
+
+
