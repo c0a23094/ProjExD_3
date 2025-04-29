@@ -168,6 +168,7 @@ def main():
                 time.sleep(1)
                 return
         
+        
         for j, bomb in enumerate(bombs):
             if beam is not None:    
                 if beam.rct.colliderect(bomb.rct):
