@@ -142,7 +142,7 @@ class Bomb:
 
 
 
-class score:
+class score: # Issue1修正済み
     def __init__(self,score):
         score_display = score
         self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 60)
@@ -226,6 +226,3 @@ if __name__ == "__main__":
     main()
     pg.quit()
     sys.exit()
-
-
-
