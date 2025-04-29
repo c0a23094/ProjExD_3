@@ -203,7 +203,7 @@ def main():
                 if beam.rct.colliderect(bomb.rct):
                     beam = None
                     bombs[j] = None
-                    score_display.score += 1
+                    # score_display.score += 1
 
                     bird.change_img(6, screen)
                     print(pscore)
